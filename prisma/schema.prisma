@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Genre {
+  id_genre Int @id @default(autoincrement())
+  genre String
+  games Games[]
+}
+
+model Editors {
+  id_editor Int @id @default(autoincrement())
+  name String
+  games Games[]
+}
+
+model Games {
+  id_game Int @id @default(autoincrement())
+  title String
+  desc String
+  releaseDate DateTime @default(now())
+  editor Editors @relation(fields: [editorId], references: [id_editor])
+  editorId Int
+  type Genre @relation(fields: [genreId], references: [id_genre])
+  genreId Int
+}
+
