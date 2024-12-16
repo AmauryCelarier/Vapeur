@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un jeu</title>
+    <link rel="stylesheet" href="/css/main.css"> <!-- Lien vers le fichier CSS -->
+</head>
+<body>
+    <!-- Insertion du header via le partial -->
+    {{> header}}
+
+    <div class="container">
+        <h2>Formulaire pour créer un jeu</h2>
+        <form action="/games/create" method="POST">
+            <label for="title">Titre :</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="desc">Description :</label>
+            <textarea id="desc" name="desc" required></textarea>
+
+            <label for="releaseDate">Date de sortie :</label>
+            <input type="date" id="releaseDate" name="releaseDate" required>
+
+            <label for="genre">Genre :</label>
+            <select id="genre" name="genreId" required>
+                <option value="">-- Sélectionnez un genre --</option>
+                {{#each genres}}
+                    <option value="{{this.id_genre}}">{{this.genre}}</option>
+                {{/each}}
+            </select>
+
+            <label for="editor">Éditeur :</label>
+            <select id="editor" name="editorId" required>
+                <option value="">-- Sélectionnez un éditeur --</option>
+                {{#each editors}}
+                    <option value="{{this.id_editor}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+
+            <label for="featured">Mise en avant :</label>
+            <input type="checkbox" id="featured" name="featured">
+
+            <button type="submit">Créer le jeu</button>
+        </form>
+    </div>
+
+    <!-- Insertion du footer via le partial -->
+    {{> footer}}
+</body>
+</html>

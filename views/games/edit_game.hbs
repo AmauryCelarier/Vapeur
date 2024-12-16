@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un éditeurs</title>
+    <link rel="stylesheet" href="/css/main.css"> <!-- Lien vers le fichier CSS -->
+</head>
+<body>
+{{> header}}
+
+<h1>Modifier le jeu : {{game.title}}</h1>
+
+<form action="/games/{{game.id_game}}/edit" method="POST">
+    <label for="title">Titre :</label>
+    <input type="text" id="title" name="title" value="{{game.title}}" required>
+
+    <label for="desc">Description :</label>
+    <textarea id="desc" name="desc" required>{{game.desc}}</textarea>
+
+    <label for="releaseDate">Date de sortie :</label>
+    <input type="date" id="releaseDate" name="releaseDate" value="{{game.releaseDate}}" required>
+
+    <label for="genre">Genre :</label>
+    <select id="genre" name="genreId" required>
+        <option value="">-- Sélectionnez un genre --</option>
+        {{#each genres}}
+        <option value="{{this.id_genre}}">{{this.genre}}</option>
+        {{/each}}
+    </select>
+
+    <label for="editor">Éditeur :</label>
+<select id="editor" name="editorId" required>
+    <option value="">-- Sélectionnez un éditeur --</option>
+    {{#each editors}}
+    <option value="{{this.id_editor}}">{{this.name}}</option>
+    {{/each}}
+</select>
+
+    <label for="featured">Jeu en vedette :</label>
+    <input type="checkbox" id="featured" name="featured" {{#if game.featured}}checked{{/if}}>
+
+    <button type="submit">Sauvegarder les modifications</button>
+</form>
+
+<a href="/games/{{game.id_game}}">Retour à la page du jeu</a>
+
+{{> footer}}
+</body>
+</html>

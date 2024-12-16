@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un éditeurs</title>
+    <link rel="stylesheet" href="/css/main.css"> <!-- Lien vers le fichier CSS -->
+</head>
+<body>
+{{> header}}
+
+<h1>Jeux par Genre</h1>
+<ul>
+    {{#each games}}
+    <li> <a href="/games/{{this.id_game}}">{{this.title}}</a> - {{this.editor.name}}</li>
+    {{/each}}
+</ul>
+
+{{> footer}}
+</body>
+</html>

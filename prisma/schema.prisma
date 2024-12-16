@@ -15,14 +15,14 @@ datasource db {
 
 model Genre {
   id_genre    Int       @id @default(autoincrement())
-  genre       String
+  genre       String    @unique
   games       Games[]
 }
 
 model Editors {
   id_editor   Int       @id @default(autoincrement())
   name        String
-  games       Games[]
+  games       Games[] 
 }
 
 model Games {
@@ -30,9 +30,9 @@ model Games {
   title       String
   desc        String
   releaseDate DateTime  @default(now())
-  editor      Editors   @relation(fields: [editorId], references: [id_editor])
+  editor      Editors   @relation(fields: [editorId], references: [id_editor], onDelete: Cascade)
   editorId    Int
-  type        Genre     @relation(fields: [genreId], references: [id_genre])
+  genre        Genre     @relation(fields: [genreId], references: [id_genre], onDelete: Cascade)
   genreId     Int
   featured    Boolean   @default(false)
 }

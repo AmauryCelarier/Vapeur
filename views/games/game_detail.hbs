@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un éditeurs</title>
+    <link rel="stylesheet" href="/css/main.css"> <!-- Lien vers le fichier CSS -->
+</head>
+<body>
+{{> header}}
+
+<h1>{{game.title}}</h1>
+<p>{{game.desc}}</p>
+<p>Date de sortie : {{game.releaseDate}}</p>
+<p>Genre : <a href="/genres/{{game.genre.id_genre}}">{{game.genre.genre}}</a></p>
+<p>Éditeur : <a href="/editors/{{game.editor.id_editor}}">{{game.editor.name}}</a></p>
+
+<a href="/games/{{game.id_game}}/edit">Modifier</a>
+<a href="/games/{{game.id_game}}/delete">Supprimer</a>
+
+<form action="/games/{{game.id_game}}/feature" method="POST">
+    <button type="submit">Mettre en avant</button>
+</form>
+
+{{> footer}}
+</body>
+</html>

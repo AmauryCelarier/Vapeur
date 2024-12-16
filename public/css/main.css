@@ -1,0 +1,197 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1b2838; /* Fond sombre */
+    color: #d1d1d1; /* Texte clair */
+    line-height: 1.5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3 {
+    color: #ffffff;
+    font-weight: normal;
+}
+
+/* Header */
+header {
+    background-color: #171a21; /* Fond du header */
+    padding: 20px;
+    text-align: center;
+}
+
+header a {
+    font-size: 24px;
+    color: #fff;
+}
+
+header a:hover {
+    color: #5f9dc7; /* Couleur hover pour le logo */
+}
+
+/* Navigation */
+nav {
+    background-color: #222222; /* Fond du menu */
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #aaa;
+    margin: 0 15px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #ffffff;
+    border-bottom: 2px solid #5f9dc7; /* Soulignement au survol */
+}
+
+/* Main Content */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+/* Jeux et éditeurs */
+.game-card {
+    background-color: #2a2f36;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.game-card h3 {
+    color: #ffffff;
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.game-card p {
+    color: #bbb;
+    margin: 10px 0;
+}
+
+.game-card .btn {
+    background-color: #5f9dc7;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.game-card .btn:hover {
+    background-color: #4a8aa3;
+}
+
+/* Formulaires */
+input, textarea, select, button {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #fff;
+}
+
+button {
+    background-color: #5f9dc7;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4a8aa3;
+}
+
+/* Liste des jeux */
+ul {
+    list-style: none;
+    margin: 20px 0;
+}
+
+ul li {
+    background-color: #333;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+ul li a {
+    color: #5f9dc7;
+    font-size: 18px;
+    display: block;
+}
+
+ul li a:hover {
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background-color: #171a21;
+    color: #aaa;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+footer a {
+    color: #5f9dc7;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .game-card {
+        width: 100%;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+}

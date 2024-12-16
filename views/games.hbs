@@ -1,9 +1,0 @@
-<h1>Liste de tous les jeux</h1>
-<ul>
-    {{#each games}}
-    <li>
-        <a href="/games/{{this.id_game}}">{{this.title}}</a> - 
-        {{this.genre.genre}} ({{this.editor.name}})
-    </li>
-    {{/each}}
-</ul>

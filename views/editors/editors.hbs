@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>Liste des éditeurs</title>
     <link rel="stylesheet" href="/css/main.css"> <!-- Lien vers le fichier CSS -->
 </head>
 <body>
+    <!-- Inclure le header -->
     {{> header}}
 
     <div class="container">
-        <h1>Jeux mis en avant</h1>
+        <a href="/editors/create">Créer un editeur</a>
+        <h1>Liste des éditeurs</h1>
         <ul>
-            {{#each games}}
+            {{#each editors}}
                 <li>
-                    <a href="/games/{{this.id_game}}">{{this.title}}</a> - {{this.genre.genre}} ({{this.editor.name}})
+                    {{this.name}} - <a href="/editors/{{this.id_editor}}">Voir les jeux</a>
                 </li>
             {{/each}}
         </ul>
-        <a href="/games/create">Créer un jeu</a><br>
-        <a href="/editors/create">Créer un editor</a>
     </div>
 
+    <!-- Inclure le footer -->
     {{> footer}}
 </body>
 </html>

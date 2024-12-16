@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un éditeurs</title>
+    <link rel="stylesheet" href="/css/main.css"> <!-- Lien vers le fichier CSS -->
+</head>
+<body>
+{{> header}}
+
+<h1>Modifier un éditeur</h1>
+<form action="/editors/{{editor.id_editor}}/edit" method="POST">
+    <input type="text" name="name" value="{{editor.name}}" required>
+    <button type="submit">Modifier</button>
+</form>
+
+{{> footer}}
+</body>
+</html>
