@@ -19,7 +19,7 @@ app.set("views", path.join(__dirname, "views"));
 
 hbs.registerPartials(path.join(__dirname, "views", "partials"));
 
-// Test 
+// Initialisation des Genres 
 
 const genres = [
     "Action",
@@ -208,13 +208,17 @@ app.get("/genres", async (req, res) => {
 app.get("/genres/:id", async (req, res) => {
     const genreId = parseInt(req.params.id);
 
+    const genre = await prisma.genre.findUnique({
+        where: { id_genre: genreId },
+    }); 
+
     const games = await prisma.games.findMany({
         where: { genreId },
-        include: { genre: true, editor: true },
+        include: { editor: true },
         orderBy: { title: "asc" },
     });
 
-    res.render("genres/games_by_genre", { games });
+    res.render("genres/games_by_genre", { games, genre });
 });
 
 // 10. Création d'un éditeur
@@ -251,13 +255,17 @@ app.get("/editors", async (req, res) => {
 app.get("/editors/:id", async (req, res) => {
     const editorId = parseInt(req.params.id);
 
+    const editor = await prisma.editors.findUnique({
+        where: { id_editor: editorId },
+    });
+
     const games = await prisma.games.findMany({
         where: { editorId },
-        include: { genre: true, editor: true },
+        include: { genre: true},
         orderBy: { title: "asc" },
     });
 
-    res.render("editors/games_by_editor", { games });
+    res.render("editors/games_by_editor", { games, editor});
 });
 
 // 13. Modification d'un éditeur
@@ -301,3 +309,4 @@ app.get("/editors/:id/delete", async (req, res) => {
         res.status(500).send("Erreur interne du serveur");
     }
 });
+

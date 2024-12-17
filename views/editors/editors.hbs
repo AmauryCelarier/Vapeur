@@ -11,7 +11,9 @@
     {{> header}}
 
     <div class="container">
-        <a href="/editors/create">Créer un editeur</a>
+        <form action="/editors/create" method="get" style="display: inline;">
+            <button type="submit">Créer un éditeur</button>
+        </form>
         <h1>Liste des éditeurs</h1>
         <ul>
             {{#each editors}}

@@ -7,18 +7,27 @@
     <link rel="stylesheet" href="/css/main.css"> <!-- Lien vers le fichier CSS -->
 </head>
 <body>
-{{> header}}
+{{> header }}
+<div class="container">
+<h1>Jeux de {{editor.name}}</h1>
 
-<h1>Jeux de éditeur</h1>
-<ul>
+
+{{#if games.length}}
+    <ul>
     {{#each games}}
         <li><a href="/games/{{this.id_game}}">{{this.title}}</a> - {{this.genre.genre}}</li>
     {{/each}}
 </ul>
+{{else}}
+    <p>Aucun jeu disponible pour ce genre.</p><br>
+{{/if}}
 
-<a href="/editors/{{game.editor.id_editor}}/edit">Modifier l'éditeur</a>
-<a href="/editors/{{game.editor.id_editor}}/delete">Supprimer l'éditeur</a>
+<div class="game-card">
+            <a href="/editors/{{editor.id_editor}}/edit" class="btn">Modifier l'éditeur</a>
+            <a href="/editors/{{editor.id_editor}}/delete" class="btn" style="background-color: #e74c3c;">Supprimer l'éditeur</a>
+        </div>
 
+</div>
 {{> footer}}
 </body>
 </html>

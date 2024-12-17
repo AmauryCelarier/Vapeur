@@ -10,7 +10,9 @@
     {{> header}}
 
 <div class="container">
-    <a href="/games/create">Créer un jeu</a>
+    <form action="/games/create" method="get" style="display: inline;">
+            <button type="submit">Créer un jeu</button>
+        </form><br>
     <h1>Liste de tous les jeux</h1>
     <ul>
         {{#each games}}

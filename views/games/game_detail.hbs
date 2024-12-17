@@ -9,18 +9,24 @@
 <body>
 {{> header}}
 
-<h1>{{game.title}}</h1>
-<p>{{game.desc}}</p>
-<p>Date de sortie : {{game.releaseDate}}</p>
-<p>Genre : <a href="/genres/{{game.genre.id_genre}}">{{game.genre.genre}}</a></p>
-<p>Éditeur : <a href="/editors/{{game.editor.id_editor}}">{{game.editor.name}}</a></p>
+<div class="container">
+    <div class="game-card">
+        <h1>{{game.title}}</h1>
+        <p>{{game.desc}}</p>
+        <p><strong>Date de sortie :</strong> {{game.releaseDate}}</p>
+        <p><strong>Genre :</strong> <a href="/genres/{{game.genre.id_genre}}">{{game.genre.genre}}</a></p>
+        <p><strong>Éditeur :</strong> <a href="/editors/{{game.editor.id_editor}}">{{game.editor.name}}</a></p>
 
-<a href="/games/{{game.id_game}}/edit">Modifier</a>
-<a href="/games/{{game.id_game}}/delete">Supprimer</a>
+        <div class="game-actions">
+            <a href="/games/{{game.id_game}}/edit" class="btn">Modifier le jeu</a>
+            <a href="/games/{{game.id_game}}/delete" class="btn" style="background-color: #e74c3c;">Supprimer le jeu</a>
+        </div>
 
-<form action="/games/{{game.id_game}}/feature" method="POST">
-    <button type="submit">Mettre en avant</button>
-</form>
+        <form action="/games/{{game.id_game}}/feature" method="POST">
+            <button type="submit" class="btn">Mettre en avant</button>
+        </form>
+    </div>
+</div>
 
 {{> footer}}
 </body>

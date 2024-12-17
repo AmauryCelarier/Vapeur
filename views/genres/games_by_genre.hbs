@@ -8,14 +8,19 @@
 </head>
 <body>
 {{> header}}
+<div class="container">
+<h1>Jeux du genre : {{genre.genre}}</h1>
 
-<h1>Jeux par Genre</h1>
-<ul>
-    {{#each games}}
-    <li> <a href="/games/{{this.id_game}}">{{this.title}}</a> - {{this.editor.name}}</li>
-    {{/each}}
-</ul>
-
+{{#if games.length}}
+    <ul>
+        {{#each games}}
+            <li><a href="/games/{{this.id_game}}">{{this.title}}</a> - {{this.editor.name}}</li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p>Aucun jeu disponible pour ce genre.</p>
+{{/if}}
+</div>
 {{> footer}}
 </body>
 </html>

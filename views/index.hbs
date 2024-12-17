@@ -18,8 +18,12 @@
                 </li>
             {{/each}}
         </ul>
-        <a href="/games/create">Créer un jeu</a><br>
-        <a href="/editors/create">Créer un editor</a>
+        <form action="/games/create" method="get" style="display: inline;">
+            <button type="submit">Créer un jeu</button>
+        </form><br>
+        <form action="/editors/create" method="get" style="display: inline;">
+            <button type="submit">Créer un éditeur</button>
+        </form>
     </div>
 
     {{> footer}}
