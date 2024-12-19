@@ -173,7 +173,7 @@ app.get("/games/:id/delete", async (req, res) => {
     await prisma.games.delete({
         where: { id_game: parseInt(req.params.id) },
     });
-    res.redirect("games/games");
+    res.redirect("/games");
 });
 
 // 7. Possibilité d'afficher le jeu sur la page d'accueil (mise en avant)
