@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: vapeur_user
+      POSTGRES_DB: vapeur_db
+      POSTGRES_PASSWORD: test1234 
+    volumes:
+      - db_data:/var/lib/postgresql/data  
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vapeur_user -d vapeur_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  app:
+    build: .
+    restart: always
+    ports:
+      - "3042:3042"
+    environment:
+      DATABASE_URL: postgresql://vapeur_user:PLACEHOLDER@db:5432/vapeur_db?schema=public
+    secrets:
+      - db_password
+    command: bash -c "export DB_PASS=$(cat /run/secrets/db_password | sed 's/[[:space:]]*$//') && export DATABASE_URL=postgresql://vapeur_user:$DB_PASS@db:5432/vapeur_db?schema=public && npx prisma migrate deploy && npm run start"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  db_data:
+
+secrets:
+  db_password:
+    file: ./db_password.txt
