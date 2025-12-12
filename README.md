@@ -1,55 +1,90 @@
-Vapeur - Gestionnaire de jeux vidéo
+# Vapeur - Gestionnaire de jeux vidéo
 
-    Description du projet : 
-Vapeur est une application web permettant de gérer une collection de jeux vidéo. Cette application propose des fonctionnalités telles que :
+## 🎮 Description du Projet
 
-La gestion des jeux (création, modification, suppression).
-La gestion des genres et des éditeurs de jeux.
-L'affichage des jeux mis en avant sur la page d'accueil.
+Vapeur est une application web moderne conçue pour gérer une collection de jeux vidéo. Elle offre des fonctionnalités CRUD (Création, Lecture, Mise à jour, Suppression) pour organiser votre ludothèque.
 
-Ce projet a été réalisé avec Express.js, Prisma, et Handlebars
+### Fonctionnalités Clés
+* Gestion des **jeux** (création, modification, suppression).
+* Gestion des **genres** et des **éditeurs**.
+* Affichage des jeux mis en avant sur la page d'accueil.
 
+### Technologies Utilisées
+Ce projet est bâti sur une stack robuste :
+* **Backend :** [Express.js](https://expressjs.com/)
+* **ORM/Base de données :** [Prisma](https://www.prisma.io/) (utilisé pour PostgreSQL en production)
+* **Templates :** [Handlebars](https://handlebarsjs.com/)
+* **Orchestration :** [Docker Compose](https://docs.docker.com/compose/) (pour la mise en production/développement avancé)
 
-    Prérequis :
-Pour exécuter ce projet, vous devez avoir installé :
+---
 
-Node.js
-Prisma
-SQLite
+## 🚀 Installation (Recommandée : Docker Compose)
 
+L'installation recommandée utilise Docker Compose pour lancer l'application Node.js (`app`) et la base de données PostgreSQL (`db`) en tant que services conteneurisés et isolés. 
 
-    Installation :
+### Prérequis
+Pour la méthode Docker, vous devez seulement avoir installé :
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) (inclut Docker et Docker Compose)
 
-1. Cloner le projet
+### Étapes de Démarrage
 
-2. Installer les dépendances : npm install
+1.  **Cloner le projet** :
+    ```bash
+    git clone [VOTRE LIEN REPO ICI]
+    cd Vapeur
+    ```
 
-3. Créez un fichier .env à la racine du projet avec cette ligne : DATABASE_URL="file:./dev.db"
+2.  **Configuration des Secrets** :
+    Créez un fichier nommé `db_password.txt` à la racine du projet et insérez le mot de passe de votre base de données à l'intérieur (par exemple, `test1234`). Ce mot de passe est utilisé par le service `db` et le service `app` via les Docker Secrets.
 
-4. Initialiser la base de données : npx prisma migrate dev --name init
+    ```bash
+    echo "test1234" > db_password.txt
+    ```
 
-5. Démarrer le serveur : npm run start
+3.  **Lancer les Services** :
+    Lancez et reconstruisez les conteneurs (si vous avez modifié le `Dockerfile`) :
+    ```bash
+    docker compose up --build
+    ```
+    *Le service `app` attendra que le service `db` soit prêt (`healthcheck`) avant d'exécuter automatiquement `npx prisma migrate deploy` pour appliquer les migrations, puis de démarrer le serveur.*
 
-Le serveur sera accessible à l'adresse http://localhost:3042.
+4.  **Accéder à l'application** :
+    Le serveur sera accessible à l'adresse : **http://localhost:3042**
 
+---
 
-    Structure du projet :
+## 💻 Installation (Méthode de Développement Locale)
 
-VAPEUR/
-├── prisma/                # Configuration Prisma (schéma, migrations)
-├── public/                # Fichiers statiques (CSS, images)
-├── views/                 # Templates Handlebars
-│   ├── games/             # Vues pour les jeux
-│   ├── editors/           # Vues pour les éditeurs
-│   ├── genres/            # Vues pour les genres
-│   ├── partials/          # Templates partiels (header, footer)
-│   └── index.hbs          # Page d'accueil
-├── .env                   # Configuration de la base de données
-├── main.js                # Fichier principal Express.js
-├── package.json           # Fichier de configuration npm
-└── README.md              # Documentation
+Si vous souhaitez développer localement sans Docker, utilisez cette méthode :
 
- 
- Auteurs :
+### Prérequis
+* [Node.js](https://nodejs.org/en) (version 20+)
+* [Prisma](https://www.prisma.io/)
+* **SQLite** (pour le développement local) ou **PostgreSQL** (si vous modifiez le `.env` et la `DATABASE_URL`).
+
+### Étapes d'Installation Locale
+
+1.  Cloner le projet.
+2.  Installer les dépendances : `npm install`
+3.  Créez un fichier `.env` à la racine du projet avec la configuration SQLite par défaut :
+    ```env
+    DATABASE_URL="file:./dev.db"
+    ```
+4.  Initialiser la base de données (création du fichier `dev.db` et application du schéma) :
+    ```bash
+    npx prisma migrate dev --name init
+    ```
+5.  Démarrer le serveur : `npm run start`
+
+Le serveur sera accessible à l'adresse `http://localhost:3042`.
+
+---
+
+## 📂 Structure du Projet
+
+VAPEUR/ ├── prisma/ # Configuration Prisma (schéma, migrations) ├── public/ # Fichiers statiques (CSS, images) ├── views/ # Templates Handlebars │   ├── games/ # Vues pour les jeux │   ├── editors/ # Vues pour les éditeurs │   ├── genres/ # Vues pour les genres │   ├── partials/ # Templates partiels (header, footer) │   └── index.hbs # Page d'accueil ├── .env # Configuration de la base de données (utilisée en local) ├── docker-entrypoint.sh # Script de démarrage pour le conteneur Docker (migrations + run) ├── main.js # Fichier principal Express.js ├── package.json # Fichier de configuration npm ├── docker-compose.yaml # Fichier d'orchestration Docker ├── db_password.txt # Fichier contenant le secret de la base de données └── README.md # Documentation
+---
+
+## 👤 Auteurs
+
 Projet réalisé par Jordan DUPUY et Amaury CELARIER.
-
