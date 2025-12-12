@@ -80,11 +80,6 @@ Le serveur sera accessible à l'adresse `http://localhost:3042`.
 
 ---
 
-## 📂 Structure du Projet
-
-VAPEUR/ ├── prisma/ # Configuration Prisma (schéma, migrations) ├── public/ # Fichiers statiques (CSS, images) ├── views/ # Templates Handlebars │   ├── games/ # Vues pour les jeux │   ├── editors/ # Vues pour les éditeurs │   ├── genres/ # Vues pour les genres │   ├── partials/ # Templates partiels (header, footer) │   └── index.hbs # Page d'accueil ├── .env # Configuration de la base de données (utilisée en local) ├── docker-entrypoint.sh # Script de démarrage pour le conteneur Docker (migrations + run) ├── main.js # Fichier principal Express.js ├── package.json # Fichier de configuration npm ├── docker-compose.yaml # Fichier d'orchestration Docker ├── db_password.txt # Fichier contenant le secret de la base de données └── README.md # Documentation
----
-
 ## 👤 Auteurs
 
 Projet réalisé par Jordan DUPUY et Amaury CELARIER.
